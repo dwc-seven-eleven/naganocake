@@ -1,0 +1,2 @@
+class OderProduct < ApplicationRecord
+end
