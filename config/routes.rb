@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'admin_orders/index'
   get 'admin_orders/show'
   get 'admin_users/index'
@@ -13,9 +14,6 @@ Rails.application.routes.draw do
   get 'admin_homes/top'
   get 'shipping_addresses/index'
   get 'shipping_addresses/edit'
-  get 'users/show'
-  get 'users/leave'
-  get 'users/edit'
   get 'orders/new'
   get 'orders/confirm'
   get 'orders/complete'
@@ -26,5 +24,8 @@ Rails.application.routes.draw do
   get 'products/show'
   get 'homes/top'
   get 'homes/about'
+
+
+  root to: 'homes#top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
