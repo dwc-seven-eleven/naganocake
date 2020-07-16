@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'homes/about' => 'homes#about'
   resources :products, only: [:index, :show]
   resources :carts, only: [:show, :create, :update, :destroy, :destroy_all]
-  resources :orders, only: [:index, :new, :create :show, :confirm, complete]
+  resources :orders, only: [:index, :new, :create, :show, :confirm, :complete]
   resources :users, only: [:show, :leave, :edit, :update]
   resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update]
   get 'admin_homes/top' => 'admin_homes#top'
