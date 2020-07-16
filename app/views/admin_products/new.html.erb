@@ -1,2 +1,58 @@
-<h1>AdminProducts#new</h1>
-<p>Find me in app/views/admin_products/new.html.erb</p>
+<!DOCTYPE html>
+<html>
+
+	<body>
+
+		<div class="container">
+
+			<div class="row">
+				<h3>商品新規登録</h3>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4">
+					<%= form_for(@product) do |f| %>
+						<%= attachment_image_tag @product, :product_image, :fill, 300, 300, format: 'jpeg' %>
+						<%= f.attachment_field :product_image, placeholder: "商品画像" %>
+					<% end %>
+				</div>
+
+				<div class="col-lg-5">
+					<%= form_for(@product) do |f| %>
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>商品名</th>
+									<th><%= f.text_field :product_name %></th>
+								</tr>
+								<tr>
+									<th>商品説明</th>
+									<th><%= f.text_area :product_introduction %></th>
+								</tr>
+								<tr>
+									<th>ジャンル</th>
+									<th><%# <%= select_tag 'genre', options_from_collection_for_select(@genre, :id, :name, include_blank: true) %> </th>
+								</tr>
+								<tr>
+									<th>税抜価格</th>
+									<th><%= f.text_field :non_taxed_price %>円</th>
+								</tr>
+								<tr>
+									<th>販売ステータス</th>
+									<th><%= f.select :sale_status, Product.sale_statuses.keys, {}, {class: 'hoge'} %></th>
+								</tr>
+							</tbody> 
+					<% end %>
+				</div>
+			</div>
+
+			<div class="row">
+				<%= form_for(@product) do |f| %>
+					<%= f.submit "新規登録", class:"btn btn-primary btn-block" %>
+				<% end %>
+			</div>
+		</div>
+
+	</body>
+
+</html>
