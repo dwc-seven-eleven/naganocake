@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update]
   get 'admin_homes/top' => 'admin_homes#top'
   resources :admin_products, only: [:index, :new, :create, :show, :edit, :update]
-  resources :admin_genres, only: [:index, :create, :edit, :update]
+  resources :admin_genres, only: [:index, :create, :edit, :update, :destroy]
   resources :admin_users,only: [:index, :show, :update, :edit]
   resources :admin_orders, only: [:index, :show, :update]
 
