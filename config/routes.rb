@@ -1,31 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'admin_orders/index'
-  get 'admin_orders/show'
-  get 'admin_users/index'
-  get 'admin_users/show'
-  get 'admin_users/edit'
-  get 'admin_genres/index'
-  get 'admin_genres/edit'
-  get 'admin_products/index'
-  get 'admin_products/new'
-  get 'admin_products/show'
-  get 'admin_products/edit'
-  get 'admin_homes/top'
-  get 'shipping_addresses/index'
-  get 'shipping_addresses/edit'
-  get 'orders/new'
-  get 'orders/confirm'
-  get 'orders/complete'
-  get 'orders/index'
-  get 'orders/show'
-  get 'carts/show'
-  get 'products/index'
-  get 'products/show'
-  get 'homes/top'
-  get 'homes/about'
-
-
   root to: 'homes#top'
+  get 'homes/about' => 'homes#about'
+  resources :products, only: [:index, :show]
+  resources :carts, only: [:show, :create, :update, :destroy, :destroy_all]
+  resources :orders, only: [:index, :new, :create, :show, :confirm, :complete]
+  resources :users, only: [:show, :leave, :edit, :update]
+  resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update]
+  get 'admin_homes/top' => 'admin_homes#top'
+  resources :admin_products, only: [:index, :new, :create, :show, :edit, :update]
+  resources :admin_genres, only: [:index, :create, :edit, :update]
+  resources :admin_users,only: [:index, :show, :update, :edit]
+  resources :admin_orders, only: [:index, :show, :update]
+
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
