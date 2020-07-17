@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :shipping_addresses, dependent: :destroy
+# member(有効),  unmember(退会)
+  enum status: { member:0, unmember:1 }
 
 end
 
