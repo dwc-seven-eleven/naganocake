@@ -4,12 +4,12 @@ class AdminProductsController < ApplicationController
 
   def index
     @products = Product.page(params[:page])
-    #@genre = @products.genre
+    @genre = @products.genre
   end
 
   def new
     @product = Product.new
-    #@genre = @products.genre
+    @genre = @products.genre
   end
 
   def create
@@ -25,7 +25,7 @@ class AdminProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    #@genre = @products.genre
+    @genre = @products.genre
   end
 
   def edit
