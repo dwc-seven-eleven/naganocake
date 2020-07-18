@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :postcode
       t.text :address
       t.string :phone_number
-      t.integer :user_status
+      t.integer :user_status, default: 0
       t.timestamps null: false
     end
 
