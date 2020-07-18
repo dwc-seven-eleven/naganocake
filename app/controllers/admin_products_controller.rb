@@ -3,6 +3,8 @@ class AdminProductsController < ApplicationController
   #before_action :authenticate_user!
 
   def index
+    @products = Product.page(params[:page])
+    #@genre = @products.genre
   end
 
   def new
@@ -11,17 +13,19 @@ class AdminProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    @product = Product.find(params[:id])
-    @products = Product.all
-    if   @product.save
-         redirect_to admin_product_path(@product.id)
+    @product = Product.new(product_params)
+
+    if @product.save
+       redirect_to admin_product_path(@product.id)
     else
-         render :new
+       render :new
     end
+
   end
 
   def show
+    @product = Product.find(params[:id])
+    #@genre = @products.genre
   end
 
   def edit
