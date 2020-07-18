@@ -1,12 +1,13 @@
 class AdminProductsController < ApplicationController
 
-  
+  #before_action :authenticate_user!
 
   def index
   end
 
   def new
     @product = Product.new
+    #@genre = @products.genre
   end
 
   def create
