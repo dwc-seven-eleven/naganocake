@@ -1,15 +1,23 @@
-<h1>AdminUsers#show</h1>
-<p>Find me in app/views/admin_users/show.html.erb</p>
 
 <h1><%= @user.first_name %><%= @user.family_name %>　さんの会員詳細</h1>
 
 顧客ID
 <%= @user.id %>
-氏名<%= @user.first_name %> <%= @user.family_name %>
-フリガナ<%= @user.first_name_kana %><%= @user.family_name_kana %>
-郵便番号<%= @user.postcode %>
-住所<%= @user.address %>
-電話番号<%= @user.phone_number %>
-メールアドレス<%= @user.email %>
+<%= @user.user_status %><br />
+氏名
+<%= @user.first_name %> <%= @user.family_name %><br />
+フリガナ
+<%= @user.first_name_kana %><%= @user.family_name_kana %><br />
+郵便番号
+<%= @user.postcode %><br />
+住所
+<%= @user.address %><br />
+電話番号
+<%= @user.phone_number %><br />
+メールアドレス
+<%= @user.email %><br />
+<br />
 
 <%= link_to "編集する", edit_admin_user_path(@user.id) %>
+
+<%= link_to "注文履歴一覧を見る", orders_path %>

@@ -1,5 +1,4 @@
-<h1>AdminUsers#edit</h1>
-<p>Find me in app/views/admin_users/edit.html.erb</p>
+
 <h1><%= @user.first_name %><%= @user.family_name %>　さんの会員詳細</h1>
 
 会員ID
@@ -24,10 +23,10 @@
 <%= f.radio_button :user_status, :member, checked: "checked" %>
     <%= f.label :member %>
     <%= f.radio_button :user_status, :unmember %>
-    <%= f.label :unmember, class: "user_status_label" %>
+    <%= f.label :unmember %>
   </div>
 
-  <%= f.submit '変更を保存する' %>
+  <%= f.submit '変更を保存する', class: "btn btn-primary" %>
 
 <% end %>
 

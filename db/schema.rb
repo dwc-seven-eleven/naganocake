@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_031304) do
     t.string "postcode"
     t.text "address"
     t.string "phone_number"
-    t.integer "user_status"
+    t.integer "user_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
