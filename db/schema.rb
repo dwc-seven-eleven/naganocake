@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_072931) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
