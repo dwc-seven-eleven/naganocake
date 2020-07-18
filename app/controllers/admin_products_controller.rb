@@ -4,16 +4,17 @@ class AdminProductsController < ApplicationController
 
   def index
     @products = Product.page(params[:page])
-    @genre = @products.genre
+  
   end
 
   def new
     @product = Product.new
-    @genre = @products.genre
+    @genre = @product.genre
   end
 
   def create
     @product = Product.new(product_params)
+    @product.genre_id = params[:genre]
 
     if @product.save
        redirect_to admin_product_path(@product.id)
@@ -25,7 +26,7 @@ class AdminProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @genre = @products.genre
+
   end
 
   def edit
