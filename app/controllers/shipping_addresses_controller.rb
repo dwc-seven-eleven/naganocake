@@ -15,6 +15,9 @@ class ShippingAddressesController < ApplicationController
   end
 
   def update
+    @shipping_address = ShippingAddress.find(params[:id])
+    @shipping_address.update(shipping_address_params)
+    redirect_to shipping_addresses_path
   end
 
   def destroy
