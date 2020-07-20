@@ -15,4 +15,8 @@ class Product < ApplicationRecord
 	validates :product_introduction, presence: true
 	validates :non_taxed_price, presence: true
 
+	def unit_price
+		(non_taxed_price * 1.1).floor
+	end
+
 end

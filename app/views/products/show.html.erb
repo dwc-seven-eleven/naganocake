@@ -13,23 +13,25 @@
         <% end %>
         </tr>
     </tbody>
-  </table>  
+  </table>
 </div>
 <div class="col-xs-9">
   <div class= table>
     <%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "400x350" %>
-    <tr>  
+    <tr>
       <td><h2><%= @product.product_name %></h2></td>
     </tr>
     <tr>
       <td><%= @product.product_introduction %></td>
     </tr>
     <tr>
-      <td><h3>¥<%= (@product.non_taxed_price*1.08).ceil %>(税込)</h3></td>
+      <td><h3>¥<%= @product.unit_price %>(税込)</h3></td>
     </tr>
   </div>
-  <%= form_for @cart do |f| %>
-    <%= f.select :product_number, options_for_select((1..20).to_a), include_blank: "個数選択" %>
-    <%= f.submit "カートに入れる" %>
-  <% end %>
+    <%= form_with(model: [@product, @cart], local: true, url: {controller: 'carts', action: 'create'}) do |f| %>
+    <%= f.label :ご購入個数 %>
+    <%= f.number_field :product_number, value: 1 ,min:1, max:99 %>個
+    <%= f.hidden_field :product_id, value: @product.id  %>
+    <%= f.submit "カートに入れる", class: "btn btn-danger" %>
+    <% end %>
 </div>
