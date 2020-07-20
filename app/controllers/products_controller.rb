@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @products = @genre.product.page(params[:page]).reverse_order
     else
-      @products = Product.all
       @products = Product.page(params[:page]).reverse_order
     end
   end
