@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'homes/about' => 'homes#about'
   resources :products, only: [:index, :show]
-  resources :carts, only: [:show, :create, :update, :destroy, :destroy_all]
+  resources :carts, only: [:index, :create, :update, :destroy]
+  delete 'carts' => 'carts#destroy_all', as: 'destroy_all_carts'
   resources :orders, only: [:index, :new, :create, :show, :confirm, :complete]
   resources :users, only: [:show, :edit, :update]
-  get 'user/:id/leave' => 'users#leave', as: 'leave_user' 
+  get 'user/:id/leave' => 'users#leave', as: 'leave_user'
   resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update]
   get 'admin_homes/top' => 'admin_homes#top'
   resources :admin_products, only: [:index, :new, :create, :show, :edit, :update]
