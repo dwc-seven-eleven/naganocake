@@ -1,2 +1,50 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<body>
+  <h1>User info</h1>
+  <%= form_for(@user) do |f| %>
+
+    <div class=field>
+      <label>(姓)</label>
+      <%= f.text_field :family_name %>
+    </div>
+    <div class=field>
+      <label>(名)</label>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class=field>
+      <label>(セイ)</label>
+      <%= f.text_field :family_name_kana %>
+    </div>
+    <div class=field>
+      <label>(メイ)</label>
+      <%= f.text_field :first_name_kana %>
+    </div>
+    <div class=field>
+      <label>メールアドレス</label>
+      <%= f.text_field :email %>
+    </div>
+
+    <div class=field>
+      <label>郵便番号(ハイフンなし)</label>
+      <%= f.text_field :postcode %><br>
+    </div>
+
+    <div class=field>
+      <label>住所 </label>
+      <%= f.text_field :address %><br>
+    </div>
+
+    <div class=field>
+    <label>電話番号(ハイフンなし)</label>
+    <%= f.text_field :phone_number %><br>
+  </div>
+    
+    <div class=actions>
+      <%= f.submit '編集内容を保存する',class: "btn-sm success"  %><br>
+    </div>
+
+    <%= link_to '退会する', leave_user_path(@user.id),class: "btn-sm btn-danger"  %>
+    
+    <% end %>
+  </body>
+
+ 
