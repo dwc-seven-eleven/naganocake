@@ -10,6 +10,11 @@ class AdminGenresController < ApplicationController
   	@genre.save
   	redirect_to admin_genres_path
   end
+  def show
+    @genres =Genre.all
+    @genre = Genre.find(params[:id])
+    @products = @genre.products.page(params[:page]).reverse_order
+  end
 
   def edit
     @genre = Genre.find(params[:id])
