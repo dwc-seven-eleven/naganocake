@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   resources :admin_genres, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :admin_users,only: [:index, :show, :update, :edit]
   resources :admin_orders, only: [:index, :show, :update]
-
+  resources :admin_orders do
+    get 'today' , :on => :collection
+    get 'detail' , :on => :member
+  end
+  # get 'admin_orsers/detail/' => 'admin_orsers#detail'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
