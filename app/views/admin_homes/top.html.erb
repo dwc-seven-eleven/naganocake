@@ -1,3 +1,4 @@
-<h1>AdminHomes#top</h1>
-<p>Find me in app/views/admin_homes/top.html.erb</p>
-<h2>これはテストです！！</h2>
+<h1>管理者画面</h1>
+
+本日の注文件数 <%= link_to @orders.count , admin_orders_path %> 件
+<!-- リンク先はひとまず注文履歴一覧へ、当日の注文履歴一覧ができたら移動させる -->
