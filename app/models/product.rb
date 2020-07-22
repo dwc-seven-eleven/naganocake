@@ -6,7 +6,7 @@ class Product < ApplicationRecord
 	attachment :product_image
 
 	enum sale_status:{
-		
+
 		販売中: 0,
 		売切れ: 1
 	}

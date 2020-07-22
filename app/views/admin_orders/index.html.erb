@@ -9,16 +9,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
+     <% @orders.zip(@order_products) each do |order, order_product| %>
       <tr>
         <td></td>
         <td><%= order.created_at %></td>
         <td><%= "#{order.user.familyname} #{order.user.firstname}" %></td>
-        <td><%= order.coutnt %></td>
+        <td><%= order_product.production_item %></td>
         <td><%= order.status %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-    <%= paginate @orders %>
-<!--/カートの中身-->

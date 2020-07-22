@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  def index  
+  def index
     @genres =Genre.all
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
       @products = Product.page(params[:page]).reverse_order
     end
   end
-  
+
   def show
     @genres =Genre.all
     @product = Product.find(params[:id])
