@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<h1>本日の注文履歴一覧</h1>
+<div class="center-block">
+
+<table class="table table-bordered">
+   <thead>
+   	 <tr>
+   	 	<th>購入日時</th>
+   	 	<th>購入者</th>
+   	 	<th>個数</th>
+   	 	<th>注文ステータス</th>
+   	 </tr>
+   	</thead>
+</table>
+
+<table class="table-bordered">
+   <% @orders.each do |order| %>
+   <tbody>
+   	<tr>
+   		<td><%= created_at %></td>
+   		<td><%= "#{@user.first_name + @user.family_name}" %></td>
+   		<td><%= Order_product.all.sum(:production_item) %></td>
+		<td><%= order.status %></td>
+
+	<% end %>
+	</tr>
+
+	</tbody>
+</table>
+</div>
+<%= paginate @orders %>

@@ -13,6 +13,8 @@ class AdminOrdersController < ApplicationController
   end
 # 当日の注文履歴一覧
   def today
+    @user = Order.where("DATE(created_at) = '#{Date.today}'")
+    @orders = Order.where("DATE(created_at) = '#{Date.today}'").page(params[:page]).reverse_order
   end
 
 end
