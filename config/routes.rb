@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   resources :carts, only: [:index, :create, :update, :destroy]
   delete 'carts' => 'carts#destroy_all', as: 'destroy_all_carts'
   get 'orders/confirm' => 'orders#confirm'
+  post 'orders/confirm' => 'orders#confirm'
   get 'orders/complete' => 'orders#complete'
-  resources :orders, only: [:index, :new, :create, :show]
+  get 'orders/new' => 'orders#new'
+  post 'orders/new' => 'orders#new'
+  resources :orders, only: [:index, :create, :show]
   resources :users, only: [:show, :edit, :update]
   get 'user/:id/leave' => 'users#leave', as: 'leave_user'
   resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update]
