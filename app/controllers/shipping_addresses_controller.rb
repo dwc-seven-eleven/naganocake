@@ -26,6 +26,9 @@ class ShippingAddressesController < ApplicationController
      redirect_to shipping_addresses_path
   end
 
+  def fulladdress
+  end
+
   private
   def shipping_address_params
     params.require(:shipping_address).permit(:shipping_name, :shipping_postcode, :shipping_address)
