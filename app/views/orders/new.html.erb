@@ -13,7 +13,7 @@
 
 					<h4>支払方法</h4>
 
-					<%= form_with model: @order, local: true, method: :get, url: orders_confirm_path do |f| %>
+					<%= form_with model: @order, local: true, method: :post, url: orders_confirm_path do |f| %>
 
 						<!--ラジオボタン クレジット-->
 						<%= f.radio_button :pay, '0', checked: true %>
