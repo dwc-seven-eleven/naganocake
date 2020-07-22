@@ -3,11 +3,11 @@
 <!--配送先登録-->
 	<%= form_for(@shipping_address, url: shipping_addresses_path) do |shipping_address| %>
 	<%= shipping_address.label "郵便番号(ハイフンなし)" %>
-	<%= shipping_address.text_field :shipping_name, class: "form-control" %><br>
+	<%= shipping_address.text_field :shipping_postcode, class: "form-control" %><br>
 	<%= shipping_address.label "住所" %>
-	<%= shipping_address.text_area :shipping_postcode, class: "form-control" %><br>
+	<%= shipping_address.text_area :shipping_address, class: "form-control" %><br>
 	<%= shipping_address.label "宛名" %>
-	<%= shipping_address.text_field :shipping_address, class: "form-control" %><br>
+	<%= shipping_address.text_field :shipping_name, class: "form-control" %><br>
 		<%= shipping_address.submit "登録する", class: "btn btn-success" %>
 	<% end %>
 <!--/配送先登録-->
@@ -24,8 +24,8 @@
 		<tbody>
 			<% @shipping_addresses.each do |shipping_address| %>
 			<tr>
-				<td><%= shipping_address.shipping_name %></td>
 				<td><%= shipping_address.shipping_postcode %></td>
+				<td><%= shipping_address.shipping_name %></td>
 				<td><%= shipping_address.shipping_address %></td>
 				<td><%= link_to "編集する",  edit_shipping_address_path(shipping_address.id), class: "btn btn-primary" %>
 					<%= link_to "削除する",  shipping_address_path(shipping_address.id), method: :delete, class: "btn-sm btn-danger" %></td>
