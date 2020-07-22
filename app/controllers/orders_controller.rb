@@ -14,6 +14,9 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+    @order = Order.new(product_params)
+    @carts = Cart.all
+    @user = current_user
   end
 
   def complete
