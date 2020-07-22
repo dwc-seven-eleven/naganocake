@@ -4,7 +4,7 @@
     <%= form_for(@genre, url: admin_genre_path) do |genre| %>
     ジャンル
     <%= genre.text_field :name %>
-	<%= genre.radio_button :status, :available, checked: true %>有効
-	<%= genre.radio_button :status, :unavailable %>無効
+	<%= genre.radio_button :status, :有効, checked: true %>有効
+	<%= genre.radio_button :status, :無効 %>無効
 	<%= genre.submit "変更を保存する", class: "btn btn-primary" %>
 	<% end %>
