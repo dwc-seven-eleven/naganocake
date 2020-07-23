@@ -27,19 +27,28 @@
 
 
 
-<div>
-<%= form_for @order do |f| %>
-  <p>支払方法</p>
-  <%= @order.pay %>
-<p>宛先
-  <%= @order.shipping_postcode %>
-  <%= @order.shipping_adress %></p>
-  <%= @order.shipping_name %>
-  <div class="actions">
-    <%= f.submit '購入を確定する' %>
-  </div>
-<% end %>
-</div>
+  <div>
+  <%= form_for @order do |f| %>
+  
+  支払方法
 
-<%= "#{@user.postcode} #{@user.address}"  %><br />
-<%= "#{@user.family_name + @user.first_name}" %>
+  <% if @order.pay == 0 %>
+    クレジットカード
+  <% else %>
+    銀行振込
+  <% end %>
+宛先
+  <% if @order.full_address == 0 %>
+  <%= f.hidden_field :shipping_postcode, value: @order.user.postcode %>
+  <%= f.hidden_field :shipping_postcode, value: @order.shipping_adress %>
+  <%= f.hidden_field :shipping_postcode, value: @order.shipping_name %>
+  <% else @order.full_address == 2 %>
+  <%= @order.shipping_postcode %>
+  <%= @order.shipping_adress %>
+
+  <%= @order.shipping_name %>
+  <% end %>
+  <%= f.submit '購入を確定する' %>
+  
+
+  <% end %>

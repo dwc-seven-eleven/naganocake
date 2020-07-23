@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   get 'orders/new' => 'orders#new'
   post 'orders/new' => 'orders#new'
   resources :orders, only: [:index, :create, :show]
-  resources :users, only: [:show, :edit, :update]
-  get 'user/:id/leave' => 'users#leave', as: 'leave_user'
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get 'user/:id/leave' => 'users#leave', as: 'leave_user'
+      patch "withdrawl"
+    end
+  end
   resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update]
   get 'admin_homes/top' => 'admin_homes#top'
   resources :admin_products, only: [:index, :new, :create, :show, :edit, :update]
