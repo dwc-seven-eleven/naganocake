@@ -1,13 +1,13 @@
 
-<h1><%= @user.first_name %><%= @user.family_name %>　さんの会員詳細</h1>
+<h1><%= @user.family_name %><%= @user.first_name %>　さんの会員詳細</h1>
 
 顧客ID
 <%= @user.id %>
 <%= @user.user_status %><br />
 氏名
-<%= @user.first_name %> <%= @user.family_name %><br />
+<%= @user.family_name %> <%= @user.first_name %><br />
 フリガナ
-<%= @user.first_name_kana %><%= @user.family_name_kana %><br />
+<%= @user.family_name_kana %><%= @user.first_name_kana %><br />
 郵便番号
 <%= @user.postcode %><br />
 住所
