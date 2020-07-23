@@ -30,23 +30,23 @@
 					<h4>お届け先</h4>
 
 						<!--ラジオボタン　ご自身の住所-->
-						<%= f.radio_button :full_address, '0', checked: true %>
-						<%= f.label :full_address, 'ご自身の住所' %><br />
+						<%= f.radio_button :pau, '2', checked: true %>
+						<%= f.label :pay, 'ご自身の住所' %><br />
 						<%= "#{@user.postcode} #{@user.address}"  %><br />
 						<%= "#{@user.family_name + @user.first_name}" %>
 						<br />
 						<!--ここまで-->
 
 						<!--ラジオボタン 登録済住所から-->
-						<%= f.radio_button :full_address, '1' %>
-						<%= f.label :full_address, '登録済住所から選択' %><br />
+						<%= f.radio_button :pay, '3' %>
+						<%= f.label :pay, '登録済住所から選択' %><br />
 						<%= f.collection_select :fulladdress, ShippingAddress.all, :id,:fulladdress, prompt: "選択してください" %>
 						<br />
 						<!--ここまで-->
 
 						<!--ラジオボタン 新しいお届け先-->
-						<%= f.radio_button :full_address, '2' %>
-						<%= f.label :full_address, '新しいお届け先' %>
+						<%= f.radio_button :pay, '4' %>
+						<%= f.label :pay, '新しいお届け先' %>
 						<li>
 							郵便番号(ハイフンなし)
 							<%= f.text_field :shipping_postcode %>

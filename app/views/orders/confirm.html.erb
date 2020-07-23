@@ -15,7 +15,7 @@
     <% sum_all = 0 %> <!--合計金額の初期設定-->
     <% @carts.each do |cart| %>
     <tr>
-    <td><%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></td> 
+    <td><%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></td>
       <td><%= cart.product.product_name %></td>
       <td><%= cart.product.unit_price %></td>
       <td><%= cart.product_number %></td>
@@ -27,19 +27,39 @@
 
 
 
-<div>
 <%= form_for @order do |f| %>
-  <p>支払方法</p>
-  <%= @order.pay %>
-<p>宛先
-  <%= @order.shipping_postcode %>
-  <%= @order.shipping_adress %></p>
-  <%= @order.shipping_name %>
-  <div class="actions">
-    <%= f.submit '購入を確定する' %>
-  </div>
+支払方法
+  <% if @order.pay == 0 %>
+    クレジットカード
+  <% else %>
+    銀行振込
+  <% end %>
+
+お届け先
+<%= form_with model:@order, url:orders_complete_path do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :shipping_postcode, value: @user.postcode %>
+  <%= f.hidden_field :shipping_address, value: @order.shipping_adress %>
+  <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
 <% end %>
-</div>
+
+<% if @order.pay == 2 %><!--ご自身の住所-->
+<%= "#{user.urrent_user.postcode} #{user.adress}" %>
+<%= "#{user.urrent_user.first_name} #{user.family_name}" %>
+
+  <% elsif @order.pay == 3 %><!--登録済み住所から選択-->
+
+あああ
+
+  <% else @order.pay == 4 %> <!--新しいお届け先-->
+<%= @order.shipping_postcode %>
+<%= @order.shipping_adress %>
+<%= @order.shipping_name %>
+  <% end %>
+
+  <%= f.submit '購入を確定する' %>
+
+<% end %>
 
 <%= "#{@user.postcode} #{@user.address}"  %><br />
 <%= "#{@user.family_name + @user.first_name}" %>
