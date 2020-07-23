@@ -10,13 +10,14 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new
     @order.save
-    redirect_to orders_complete_path(@order.id)
+    redirect_to orders_complete_path
   end
 
   def confirm
     @order = Order.new(product_params)
     @carts = Cart.all
     @user = current_user
+    @shipping_adresses = ShippingAddress.all
   end
 
   def complete
@@ -33,6 +34,6 @@ class OrdersController < ApplicationController
 
   private
   def product_params
-    params.require(:order).permit(:pay, :shipping_postcode, :shipping_adress, :shipping_name, :user_id)
+    params.require(:order).permit(:pay, :shipping_postcode, :shipping_adress, :shipping_name, :user_id, :full)
   end
 end

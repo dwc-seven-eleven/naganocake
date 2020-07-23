@@ -26,29 +26,37 @@
   </tbody>
 
 
-
-  <div>
-  <%= form_for @order do |f| %>
-  
-  支払方法
-
+<%= form_for @order do |f| %>
+支払方法
   <% if @order.pay == 0 %>
     クレジットカード
   <% else %>
     銀行振込
   <% end %>
-宛先
-  <% if @order.full_address == 0 %>
-  <%= f.hidden_field :shipping_postcode, value: @order.user.postcode %>
-  <%= f.hidden_field :shipping_postcode, value: @order.shipping_adress %>
-  <%= f.hidden_field :shipping_postcode, value: @order.shipping_name %>
-  <% else @order.full_address == 2 %>
-  <%= @order.shipping_postcode %>
-  <%= @order.shipping_adress %>
 
-  <%= @order.shipping_name %>
+お届け先
+<%= form_with model:@order, local: true, method: :post, url:orders_path do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :shipping_postcode, value: @user.postcode %>
+  <%= f.hidden_field :shipping_address, value: @order.shipping_adress %>
+  <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+
+
+<% if @order.full == 0 %>
+<%= "#{current_user.postcode} #{current_user.address}" %>
+<%= "#{current_user.first_name} #{current_user.family_name}" %>
+
+  <% elsif @order.full == 1 %>
+  <%= @shipping_addresses.fulladdress %>
+
+
+  <% else @order.full == 2 %> 
+<%= @order.shipping_postcode %>
+<%= @order.shipping_adress %>
+<%= @order.shipping_name %>
   <% end %>
+
   <%= f.submit '購入を確定する' %>
-  
 
-  <% end %>
+<% end %>
+<% end %>
