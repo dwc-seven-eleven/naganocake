@@ -4,6 +4,19 @@ class UsersController < ApplicationController
   end
 
   def leave
+    @user = User.find(params[:id])
+  end
+
+  #退会処理のアクション
+  def withdrawl
+    @user = User.find(current_user.id)
+    #現在ログインしているユーザーを@userに格納
+    @user.update(user_status: "退会")
+    #updateで登録情報を退会に変更
+    reset_session
+    #sessionIDのresetを行う
+    redirect_to root_path
+    #指定されたrootへのpath
   end
 
   def edit
@@ -20,7 +33,7 @@ class UsersController < ApplicationController
   end
   private
   def user_params
-    params.require(:user).permit(:first_name,:family_name,:family_name_kana,:first_name_kana,:email,:postcode,:first_name,:address,:phone_number)
+    params.require(:user).permit(:first_name,:family_name,:family_name_kana,:first_name_kana,:email,:postcode,:first_name,:address,:phone_number,:user_status)
   end
 
 end

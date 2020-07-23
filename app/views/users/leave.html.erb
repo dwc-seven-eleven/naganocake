@@ -1,2 +1,28 @@
-<h1>Users#leave</h1>
-<p>Find me in app/views/users/leave.html.erb</p>
+<div class="container">
+	
+	<div class="row">
+		
+		<h4>本当に退会しますか？</h4>
+
+	</div>
+
+	<div class="row">
+
+		<div class="text-center">
+		
+			退会すると、会員登録情報や<br />
+			これまでの購入履歴が閲覧できなくなります。<br />
+			退会する場合は、「退会する」をクリックしてください。
+
+		</div>
+
+	</div>
+
+	<div class="row">
+		
+		<%= link_to "退会しない", orders_path(@user), class: "btn btn-prymary pull-right" %>
+
+		<%= link_to "退会する", withdrawl_user_path(@user.id), method: :patch, class: "btn btn-danger pull-right" %>
+
+	</div>
+</div>
