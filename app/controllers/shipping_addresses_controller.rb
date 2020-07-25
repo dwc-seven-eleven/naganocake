@@ -6,7 +6,8 @@ class ShippingAddressesController < ApplicationController
 
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
-    @shipping_address.save
+    @shipping_address.user_id = current_user.id
+    @shipping_address.save!
     redirect_to shipping_addresses_path
   end
 
@@ -31,7 +32,7 @@ class ShippingAddressesController < ApplicationController
 
   private
   def shipping_address_params
-    params.require(:shipping_address).permit(:shipping_name, :shipping_postcode, :shipping_address)
+    params.require(:shipping_address).permit(:shipping_name, :shipping_postcode, :shipping_address, :user_id)
   end
 
 end
