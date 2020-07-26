@@ -3,7 +3,7 @@
 <div class= "table">
   <tr>
     <td>注文日</td>
-    <td>%= @order.created_at %></td>
+    <td><%= @order.created_at %></td>
   </tr>
   <tr>
     <td>配送先</td>
@@ -27,7 +27,7 @@
 <div class= "table">
   <tr>
     <td>商品合計</td>
-    <td>%= @order.total_price %></td>
+    <td><%= @order.total_price %></td>
   </tr>
   <tr>
     <td>配送料</td>
@@ -49,16 +49,17 @@
       <td>単価</td>
       <td>個数</td>
       <td>小計</td>
-    <tr>    
+    <tr>
   </th>
   <tbody>
     <% sum_all = 0 %> <!--合計金額の初期設定-->
-    <% @order.each do |order| %>
+
+    <% @order.order_products.each do |f| %>
     <tr>
-      <td><%= order.product.product_name %></td>
-      <td><%= order.product.unit_price %></td>
-      <td><%= order.product_number %></td>
-      
+      <td><%= f.product.product_name %></td>
+      <td><%= f.product.unit_price %></td>
+      <td><%= f.order_products_number %></td>
+
       <td><%= sum_product = order.product.unit_price.to_i * order.product_number %>
              <% sum_all += sum_product %></td>
     </tr>
