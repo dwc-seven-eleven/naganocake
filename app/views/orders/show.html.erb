@@ -54,13 +54,13 @@
   <tbody>
     <% sum_all = 0 %> <!--合計金額の初期設定-->
 
-    <% @order.order_products.each do |f| %>
+    <% @order.order_products.each do |order| %>
     <tr>
-      <td><%= f.product.product_name %></td>
-      <td><%= f.product.unit_price %></td>
-      <td><%= f.order_products_number %></td>
+      <td><%= order.product.product_name %></td>
+      <td><%= order.product.unit_price %></td>
+      <td><%= order.production_item %></td>
 
-      <td><%= sum_product = order.product.unit_price.to_i * order.product_number %>
+      <td><%= sum_product = order.product.unit_price.to_i * order.production_item %>
              <% sum_all += sum_product %></td>
     </tr>
     <% end %>
