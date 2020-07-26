@@ -17,8 +17,8 @@
    		<% @orders.each do |order| %>
    			<tbody>
    				<tr>
-   					<td><%= created_at %></td>
-   					<td><%= "#{@user.first_name + @user.family_name}" %></td>
+   					<td><%= order.created_at %></td>
+   					<td><%= order."#{@user.first_name + @user.family_name}" %></td>
    					<td><%= Order_product.all.sum(:production_item) %></td>
 					<td><%= order.status %></td>
 				</tr>
