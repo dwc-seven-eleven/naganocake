@@ -25,7 +25,7 @@ class AdminOrdersController < ApplicationController
 
 private
   def cart_params
-    params.require(:order).permit(:user_id, :total_price, :pay, :status, :shipping_name, :shipping_postcode, :shipping_adress,:postage, :created_at)
+    params.require(:order).permit(:user_id, :total_price, :pay, :status, :shipping_name, :shipping_postcode, :shipping_adress,:postage, :created_at, :page)
   end
 
 end
