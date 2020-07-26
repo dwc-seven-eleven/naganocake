@@ -1,5 +1,4 @@
 
-
 <h1>注文情報確認</h1>
 <table class= "table">
   <thead>
@@ -15,40 +14,77 @@
     <% sum_all = 0 %> <!--合計金額の初期設定-->
     <% @carts.each do |cart| %>
     <tr>
-    <td><%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></td> 
+    <td><%= attachment_image_tag cart.product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></td>
       <td><%= cart.product.product_name %></td>
       <td><%= cart.product.unit_price %></td>
       <td><%= cart.product_number %></td>
       <td><%= sum_product = cart.product.unit_price.to_i * cart.product_number %>
              <% sum_all += sum_product %></td>
+
     </tr>
     <% end %>
   </tbody>
 
 
-
-  <div>
-  <%= form_for @order do |f| %>
-  
-  支払方法
-
-  <% if @order.pay == 0 %>
+<%= form_with model:@order, local: true, method: :post, url:orders_path do |f| %>
+支払方法
+  <% if params[:pay] == "クレジット" %>
     クレジットカード
-  <% else %>
+  <% else params[:pay] == "銀行振込" %>
     銀行振込
   <% end %>
-宛先
-  <% if @order.full_address == 0 %>
-  <%= f.hidden_field :shipping_postcode, value: @order.user.postcode %>
-  <%= f.hidden_field :shipping_postcode, value: @order.shipping_adress %>
-  <%= f.hidden_field :shipping_postcode, value: @order.shipping_name %>
-  <% else @order.full_address == 2 %>
-  <%= @order.shipping_postcode %>
-  <%= @order.shipping_adress %>
+<%= f.hidden_field :pay, :value => params[:pay] %>
 
-  <%= @order.shipping_name %>
-  <% end %>
-  <%= f.submit '購入を確定する' %>
+
+
+お届け先
+
+
+
+
+<% if params[:full] == "myaddress" %>
+<%= "#{current_user.postcode} #{current_user.address}" %>
+<%= "#{current_user.first_name} #{current_user.family_name}" %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :shipping_postcode, value: current_user.postcode %>
+  <%= f.hidden_field :shipping_adress, value: current_user.address %>
+  <%= f.hidden_field :shipping_name, value: current_user.first_name + current_user.family_name %>
+
+
+
+  <% elsif params[:full] == "listaddress" %>
+  <%= @shipping_addresses.shipping_postcode %>
+  <%= @shipping_addresses.shipping_address %>
+  <%= @shipping_addresses.shipping_name %>
   
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
+  <%= f.hidden_field :shipping_adress, value: @order.shipping_adress %>
+  <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+
+  <% else params[:full] == "newaddress" %>
+<%= @order.shipping_postcode %>
+<%= @order.shipping_adress %>
+<%= @order.shipping_name %>
+
+<%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
+  <%= f.hidden_field :shipping_adress, value: @order.shipping_adress %>
+  <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+
 
   <% end %>
+
+  <%= f.submit '購入を確定する' %>
+
+
+<%= f.hidden_field :total_price, value: sum_all + 400 %>
+
+
+<% end %>
+
+
+
+<%= sum_all %>
+<%= sum_all + 400 %>
