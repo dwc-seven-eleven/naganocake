@@ -13,6 +13,17 @@ class OrdersController < ApplicationController
     @order.postage = 400
     @order.status = 0
     @order.save
+
+    @cart_items = current_user.carts
+    @cart_items.each do |cart_item|
+    @order_product = OrderProduct.new
+    @order_product.order_id = @order.id
+    @order_product.product_id = cart_item.product_id
+    @order_product.unit_price = cart_item.product.non_taxed_price.to_i * 1.1
+    @order_product.production_item = cart_item.product_number
+
+    @order_product.save
+    end
     @user = current_user
     @user.carts.destroy_all
     redirect_to orders_complete_path
@@ -36,9 +47,13 @@ class OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
+    @order = Order.find(params[:id])
+
+
   end
 
 
@@ -46,4 +61,10 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:pay, :shipping_postcode, :shipping_adress, :shipping_name, :user_id, :total_price)
   end
+
+
 end
+
+
+
+
