@@ -45,7 +45,7 @@
 <% if params[:full] == "myaddress" %>
 <%= "#{current_user.postcode} #{current_user.address}" %>
 <%= "#{current_user.first_name} #{current_user.family_name}" %>
-  
+
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: current_user.postcode %>
   <%= f.hidden_field :shipping_adress, value: current_user.address %>
@@ -54,8 +54,10 @@
 
 
   <% elsif params[:full] == "listaddress" %>
-  <%= @shipping_addresses %>
-
+  <%= @shipping_addresses.shipping_postcode %>
+  <%= @shipping_addresses.shipping_address %>
+  <%= @shipping_addresses.shipping_name %>
+  
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
   <%= f.hidden_field :shipping_adress, value: @order.shipping_adress %>
@@ -65,7 +67,7 @@
 <%= @order.shipping_postcode %>
 <%= @order.shipping_adress %>
 <%= @order.shipping_name %>
-  
+
 <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
   <%= f.hidden_field :shipping_adress, value: @order.shipping_adress %>

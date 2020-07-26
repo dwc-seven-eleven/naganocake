@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def withdrawl
     @user = User.find(current_user.id)
     #現在ログインしているユーザーを@userに格納
-    @user.update(user_status: "退会")
+    @user.update(user_status: "退会済")
     #updateで登録情報を退会に変更
     reset_session
     #sessionIDのresetを行う

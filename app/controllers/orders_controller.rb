@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @user = current_user
+    @shipping_address = ShippingAddress.where(user_id: @user.id)
   end
 
   def create
@@ -12,13 +13,15 @@ class OrdersController < ApplicationController
     @order.postage = 400
     @order.status = 0
     @order.save
+    @user = current_user
+    @user.carts.destroy_all
     redirect_to orders_complete_path
   end
 
   def confirm
     @order = Order.new(order_params)
-    @carts = Cart.all
     @user = current_user
+    @carts = Cart.where(user_id: @user.id)
 
   # ifの条件分岐
     if params[:full] == "listaddress"
