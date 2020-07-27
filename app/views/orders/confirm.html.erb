@@ -59,7 +59,7 @@
   <%= @shipping_addresses.shipping_address %>
   <%= @shipping_addresses.shipping_name %>
 </td>
-  
+
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
   <%= f.hidden_field :shipping_adress, value: @order.shipping_adress %>
@@ -82,11 +82,17 @@
   <%= f.submit '購入を確定する' %>
 
 
-<%= f.hidden_field :total_price, value: sum_all + 400 %>
+<%= f.hidden_field :total_price, value: sum_all + 800 %>
 
 
 <% end %>
 
+    <!--shipping_addressに保存-->
+    <%= form_with model:@shipping_address, local: true, method: :post, url:shipping_addresses_path do |f| %>
+     <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
+     <%= f.hidden_field :shipping_address, value: @order.shipping_adress %>
+     <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+    <% end %>
 
 <table class="table table-bordered">
   <tr>
@@ -99,6 +105,6 @@
   </tr>
   <tr>
     <td>商品合計</td>
-    <td><%= sum_all + 400 %></td>
+    <td><%= sum_all + 800 %></td>
   </tr> 
 </table>

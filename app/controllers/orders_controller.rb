@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.postage = 400
+    @shipping_address = ShippingAddress.new(params[:shipping_address])
+    @order.postage = 800
     @order.status = 0
     @order.save
 
@@ -31,9 +32,10 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @order.postage = 400
+    @order.postage = 800
     @user = current_user
     @carts = Cart.where(user_id: @user.id)
+    @shipping_address = ShippingAddress.new
 
   # ifの条件分岐
     if params[:full] == "listaddress"
@@ -48,7 +50,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
     
   end
 

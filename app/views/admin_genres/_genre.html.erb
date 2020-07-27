@@ -7,7 +7,9 @@
       <tr>
       <% @genres.each do |genre| %>
         <tr>
+          <% if genre.status == "有効" %>
         <td><%= link_to genre.name, admin_genre_path(genre.id) %></td>
+          <% end %>
         </tr>
         <% end %>
         </tr>
