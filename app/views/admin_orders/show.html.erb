@@ -3,7 +3,7 @@
 <div class= "table">
   <tr>
     <td>注文日</td>
-    <td><%= @order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+    <td><%= @order.shipping_name %></td>
   </tr>
   <tr>
     <td>配送先</td>
@@ -12,15 +12,21 @@
         <%= @order.shipping_name %>
     </td>
   </tr>
+
   <tr>
     <td>支払方法</td>
     <td><%= @order.pay %></td>
   </tr>
+
   <tr>
     <!-- 注文ステータスを変更できるようにする -->
-    <td>ステータス</td>
-    <td><%= @order.status %></td>
-  </tr>
+    <td>注文ステータス</td>
+    <%= form_for(@order, url: admin_order_path(@order.id) ) do |f| %>
+    <td><%= f.select :status, Order.statuses.keys, {selected: @order.status} %></td>
+    <%= hidden_field_tag :select_id ,"1" %>
+     <%= hidden_field_tag :order_id ,@order.id %>
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  </tr><% end %>
 </div>
 
 
@@ -46,24 +52,32 @@
 <div class= "table">
   <th>
     <tr>
-      <td>商品</td>
+    <td>商品</td>
       <td>単価</td>
       <td>個数</td>
       <td>小計</td>
+      <td>製作ステータス</td>
+
     <tr>
   </th>
   <tbody>
     <% sum_all = 0 %> <!--合計金額の初期設定-->
 
-    <% @order.order_products.each do |order| %>
+    <% @order_products.each do |order_product| %>
     <tr>
-      <td><%= order.product.product_name %></td>
-      <td><%= order.product.unit_price %></td>
-      <td><%= order.production_item %></td>
-<!-- 製作ステータス追加enum追加 -->
-      <td><%= sum_product = order.product.unit_price.to_i * order.production_item %>
+      <td><%= order_product.product.product_name %></td>
+      <td><%= order_product.unit_price %></td>
+      <td><%= order_product.production_item %></td>
+      <td><%= sum_product = order_product.unit_price.to_i * order_product.production_item %>
              <% sum_all += sum_product %></td>
+
+      <%= form_for(order_product, url: admin_order_path(order_product.id)) do |f| %>
+      <td><%= f.select :production_status, OrderProduct.production_statuses.keys, {selected: order_product.production_status} %></td>
+      <%= hidden_field_tag :select_id ,"2" %>
+      <%= hidden_field_tag :product_id, order_product.product_id %>
+      <%= f.submit "更新", class: "btn btn-primary" %>
     </tr>
+    <% end %>
     <% end %>
   </tbody>
 </div>

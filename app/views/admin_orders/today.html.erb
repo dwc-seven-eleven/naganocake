@@ -17,7 +17,7 @@
    			<tbody>
    				<tr>
                   <td>
-                     <%= link_to(admin_order_path(@user), class: "today")  do %>
+                     <%= link_to(admin_order_path(order), class: "today")  do %>
                      <div class= "today">
                      <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
                   <% end %>
