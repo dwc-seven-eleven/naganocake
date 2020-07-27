@@ -16,6 +16,7 @@ module Naganocake
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+
     #railsが表示の際に扱うタイムゾーン
     config.time_zone = 'Tokyo'
 

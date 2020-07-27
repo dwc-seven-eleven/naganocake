@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<h1>本日の注文履歴一覧</h1>
+<div class="center-block">
+
+	<table class="table table-bordered">
+   		<thead>
+   	 		<tr>
+               <th>購入日時</th>
+   	 			<th>購入者</th>
+   	 			<th>個数</th>
+   	 			<th>注文ステータス</th>
+   	 		</tr>
+   		</thead>
+
+
+   		<% @orders.each do |order| %>
+   			<tbody>
+   				<tr>
+                  <td>
+                     <%= link_to(admin_order_path(@user), class: "today")  do %>
+                     <div class= "today">
+                     <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></div>
+                  <% end %>
+                  </td>
+                  <td><%= "#{order.user.family_name}#{order.user.first_name}" %></td>
+   					<td><%= order.order_products.all.sum(:production_item) %></td>
+					   <td><%= order.status %></td>
+				  </tr>
+              <% end %>
+			   </tbody>
+	</table>
+</div>
+<%= paginate @orders %>

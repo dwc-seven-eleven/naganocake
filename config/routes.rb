@@ -23,9 +23,10 @@ Rails.application.routes.draw do
   resources :admin_products, only: [:index, :new, :create, :show, :edit, :update]
   resources :admin_genres, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :admin_users,only: [:index, :show, :update, :edit]
-     resources :admin_orders do
-    get 'today' , :on => :collection
-    get 'detail' , :on => :member
+  resources :admin_orders do
+  get 'today' , :on => :collection
+  get 'detail' , :on => :member
+  resources :admin_orders, only: [:index, :show, :update]
   end
   resources :admin_orders, only: [:index, :show, :update]
 

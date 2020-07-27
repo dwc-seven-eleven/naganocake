@@ -12,6 +12,7 @@ class AdminOrdersController < ApplicationController
   end
 
 # 該当顧客の注文一覧
+
   def detail
     @orders = Order.where(user_id: user.id)
     @order_products = Order.where(user_id: user.id)
@@ -19,6 +20,8 @@ class AdminOrdersController < ApplicationController
 
 # 当日の注文履歴一覧
   def today
+    @user = User.all
+    @orders = Order.where("DATE(created_at) = '#{Date.today}'").page(params[:page]).reverse_order
   end
 
 private

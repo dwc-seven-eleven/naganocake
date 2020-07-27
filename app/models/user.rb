@@ -17,9 +17,11 @@ class User < ApplicationRecord
 # member(有効),  unmember(退会)
   enum user_status: { 有効: 0, 退会済: 1 }
 
+
   def active_for_authentication?
   		super && (self.user_status === "有効")
   end
+
 
 end
 

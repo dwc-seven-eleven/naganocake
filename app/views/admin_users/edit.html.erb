@@ -1,16 +1,16 @@
 
-<h1><%= @user.first_name %><%= @user.family_name %>　さんの会員詳細</h1>
+<h1><%= @user.family_name %><%= @user.first_name %>　さんの会員詳細</h1>
 
 会員ID
 <%= @user.id %>
 <!-- form_for部分 -->
 <%= form_for(@user, url: admin_user_path) do |f| %>
   <h4>氏名</h4>
-  <%= f.text_field :first_name %>
   <%= f.text_field :family_name %>
+  <%= f.text_field :first_name %>
   <h4>フリガナ</h4>
-  <%= f.text_field :first_name_kana %>
   <%= f.text_field :family_name_kana %>
+  <%= f.text_field :first_name_kana %>
   <h4>郵便番号</h4>
   <%= f.text_area :postcode %>
 　<h4>住所</h4>
@@ -20,10 +20,10 @@
   <h4>メールアドレス</h4>
   <%= f.text_area :email %>
 <h4>ステータス</h4>
-<%= f.radio_button :user_status, :member, checked: "checked" %>
-    <%= f.label :member %>
-    <%= f.radio_button :user_status, :unmember %>
-    <%= f.label :unmember %>
+<%= f.radio_button :user_status, :有効, checked: "checked" %>
+    <%= f.label :member, "有効" %>
+    <%= f.radio_button :user_status, :退会済 %>
+    <%= f.label :unmember,"退会済み" %>
   </div>
 
   <%= f.submit '変更を保存する', class: "btn btn-primary" %>
