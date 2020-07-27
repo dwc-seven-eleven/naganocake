@@ -1,10 +1,11 @@
 class AdminOrdersController < ApplicationController
   def index
-    @orders = Order.all
-    @order_products = OrderProduct.all
+    @order_products = OrderProduct.page(params[:page]).reverse_order
+    @oder = Order.find_by(params[:id])
   end
 
   def show
+    @order = Order.find_by(params[:id])
   end
 
   def update
@@ -25,7 +26,7 @@ class AdminOrdersController < ApplicationController
 
 private
   def cart_params
-    params.require(:order).permit(:user_id, :total_price, :pay, :status, :shipping_name, :shipping_postcode, :shipping_adress,:postage, :created_at, :page)
+    params.require(:order).permit(:user_id, :total_price, :pay, :status, :shipping_name, :shipping_postcode, :shipping_adress, :postage, :created_at)
   end
 
 end
