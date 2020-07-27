@@ -1,7 +1,7 @@
 class AdminOrdersController < ApplicationController
   def index
     @order_products = OrderProduct.page(params[:page]).reverse_order
-    @oder = Order.find_by(params[:id])
+    @order = Order.find_by(params[:id])
   end
 
   def show
@@ -14,9 +14,11 @@ class AdminOrdersController < ApplicationController
 # 該当顧客の注文一覧
 
   def detail
-    @orders = Order.where(user_id: user.id)
-    @order_products = Order.where(user_id: user.id)
+    @user = User.find(params[:id])
+    @orders = @user.orders.page(params[:page]).reverse_order
+    @order = Order.find_by(params[:id])
   end
+
 
 # 当日の注文履歴一覧
   def today
@@ -25,7 +27,7 @@ class AdminOrdersController < ApplicationController
   end
 
 private
-  def cart_params
+  def order_params
     params.require(:order).permit(:user_id, :total_price, :pay, :status, :shipping_name, :shipping_postcode, :shipping_adress, :postage, :created_at)
   end
 

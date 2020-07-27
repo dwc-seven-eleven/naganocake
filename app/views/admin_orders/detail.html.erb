@@ -1,4 +1,3 @@
-<!--topページから遷移する該当顧客の注文一覧-->
 <h1>注文履歴一覧</h1>
   <table class="table table-bordered">
     <thead>
@@ -10,15 +9,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.zip(@order_products) each do |order, order_product| %>
+      <% @orders.each do |order| %>
       <tr>
-        <td></td>
-        <td><%= order.created_at %></td>
-        <td><%= "#{order.user.familyname} #{order.user.firstname}" %></td>
-        <td><%= order_product.production_item %></td>
+        <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(@order) %></td>
+        <td><%= order.shipping_name %></td>
+        <td><%= order.order_products.all.sum(:production_item) %></td>
         <td><%= order.status %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-    <%= paginate @orders %>
+  <%= paginate @orders %>
