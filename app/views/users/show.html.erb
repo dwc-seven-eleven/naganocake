@@ -1,37 +1,38 @@
 <h1>マイページ</h1>
-<table>
+<div class="row">
+<div class="col-md-5">
+
+<h2>登録情報</h2>
+<p><%= link_to "編集する", edit_user_path(@user),class: "btn-sm btn-success" %>     <%= link_to "パスワードを変更する", new_user_password_path(@user),class: "btn-sm btn-success" %></p>
+
+<table class="table table-bordered">
   <tr>
-    <td><h2>登録情報</h2></td>
-    <td><%= link_to "編集する", edit_user_path(@user),class: "btn-sm btn-success" %></td>
-    <td><%= link_to "パスワードを変更する", new_user_password_path(@user),class: "btn-sm btn-success" %></td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <td>氏名</td>
+    <td class="active">氏名</td>
     <td><%= @user.family_name %><%= @user.first_name %></td>
   </tr>
   <tr>
-    <td>カナ</td>
+    <td class="active">カナ</td>
     <td><%= @user.family_name_kana %><%= @user.first_name_kana %></td>
   </tr>
   <tr>
-    <td>郵便番号</td>
+    <td class="active">郵便番号</td>
     <td><%= @user.postcode %></td>
   </tr>
   <tr>
-    <td>住所</td>
+    <td class="active">住所</td>
     <td><%= @user.address %></td>
   </tr>
   <tr>
-    <td>電話番号</td>
+    <td class="active">電話番号</td>
     <td><%= @user.phone_number %></td>
   </tr>
   <tr>
-    <td>メールアドレス</td>
+    <td class="active">メールアドレス</td>
     <td><%= @user.email %></td>
   </tr>
 </table>
+</div>
+</div>
 <table>
   <tr>
     <td><h3>配送先</h3></td>

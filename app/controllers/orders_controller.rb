@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.postage = 400
     @user = current_user
     @carts = Cart.where(user_id: @user.id)
 
@@ -48,6 +49,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    
   end
 
   def show
