@@ -1,3 +1,37 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<div class="container">
+	
+	<div class="row">
+
+		<div class="col-xs-3">
+
+			<%= render 'admin_genres/genre', genre: @genres %>
+
+		</div>
+		
+		<div class="col-xs-9">
+
+			ようこそ、NaganoCakeへ！<br />	
+			このサイトは、ケーキ販売のECサイトになります。<br />
+			会員でない方も商品の閲覧はできますが、<br />
+			購入には会員登録が必要になります。
+		
+			<h2>オススメ商品</h2>
+
+			<% @random.each do |product| %>
+
+				<%= attachment_image_tag product, :product_image, format: 'jpeg', fallback: "no_image.jpg", size: "130x130" %><br />
+				<%= product.product_name %><br />
+				¥<%= product.non_taxed_price %>
+
+			<% end %>
+
+		</div>
+
+	</div>
+
+	<div class="row">
+		
+		<%= link_to "もっと見る>", products_path %>
+
+	</div>
+</div>
