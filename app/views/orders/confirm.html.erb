@@ -1,15 +1,13 @@
 
 <h1>注文情報確認</h1>
-<table class= "table">
-  <thead>
-    <tr>
-    <td></td>
-      <td>商品名</td>
-      <td>単価(税込)</td>
-      <td>数量</td>
-      <td>小計</td>
+<table class="table table-bordered">
+    <tr class="active">
+    <th></th>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
     </tr>
-  </thead>
   <tbody>
     <% sum_all = 0 %> <!--合計金額の初期設定-->
     <% @carts.each do |cart| %>
@@ -27,24 +25,27 @@
 
 
 <%= form_with model:@order, local: true, method: :post, url:orders_path do |f| %>
-支払方法
-  <% if params[:pay] == "クレジット" %>
-    クレジットカード
+  <table class="table table-bordered">
+<td class="active">支払方法</td>
+<% if params[:pay] == "クレジット" %>
+<td>クレジットカード</td>
   <% else params[:pay] == "銀行振込" %>
-    銀行振込
+    <td>銀行振込</td>
   <% end %>
 <%= f.hidden_field :pay, :value => params[:pay] %>
 
 
-
-お届け先
+<tr>
+<td class="active">お届け先</td>
 
 
 
 
 <% if params[:full] == "myaddress" %>
-<%= "#{current_user.postcode} #{current_user.address}" %>
-<%= "#{current_user.first_name} #{current_user.family_name}" %>
+<td>
+  <%= "#{current_user.postcode} #{current_user.address}" %>
+  <%= "#{current_user.family_name} #{current_user.first_name}" %>
+</td>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: current_user.postcode %>
@@ -54,9 +55,10 @@
 
 
   <% elsif params[:full] == "listaddress" %>
-  <%= @shipping_addresses.shipping_postcode %>
+ <td><%= @shipping_addresses.shipping_postcode %>
   <%= @shipping_addresses.shipping_address %>
   <%= @shipping_addresses.shipping_name %>
+</td>
   
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
@@ -64,16 +66,17 @@
   <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
 
   <% else params[:full] == "newaddress" %>
-<%= @order.shipping_postcode %>
-<%= @order.shipping_adress %>
-<%= @order.shipping_name %>
-
+<td>
+  <%= @order.shipping_postcode %>
+  <%= @order.shipping_adress %>
+  <%= @order.shipping_name %>
+</td>
 <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :shipping_postcode, value: @order.shipping_postcode %>
   <%= f.hidden_field :shipping_adress, value: @order.shipping_adress %>
   <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
-
-
+</tr>
+  </table>
   <% end %>
 
   <%= f.submit '購入を確定する' %>
@@ -85,6 +88,17 @@
 <% end %>
 
 
-
-<%= sum_all %>
-<%= sum_all + 400 %>
+<table class="table table-bordered">
+  <tr>
+    <td>送料</td>
+    <td><%= @order.postage %></td>
+  </tr>
+  <tr>
+    <td>商品合計</td>
+    <td><%= sum_all %></td>
+  </tr>
+  <tr>
+    <td>商品合計</td>
+    <td><%= sum_all + 400 %></td>
+  </tr> 
+</table>
