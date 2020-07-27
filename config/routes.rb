@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   resources :admin_products, only: [:index, :new, :create, :show, :edit, :update]
   resources :admin_genres, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :admin_users,only: [:index, :show, :update, :edit]
-   get 'admin_orders/detail' => 'admin_orders#detail'
      resources :admin_orders do
     get 'today' , :on => :collection
     get 'detail' , :on => :member

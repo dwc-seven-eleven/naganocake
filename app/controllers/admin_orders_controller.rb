@@ -1,7 +1,7 @@
 class AdminOrdersController < ApplicationController
   def index
     @order_products = OrderProduct.page(params[:page]).reverse_order
-    @oder = Order.find_by(params[:id])
+    @order = Order.find_by(params[:id])
   end
 
   def show
@@ -13,8 +13,9 @@ class AdminOrdersController < ApplicationController
 
 # 該当顧客の注文一覧
   def detail
-    @order_products = OrderProduct.page(params[:page]).reverse_order
-    @oder = Order.find_by(params[:id])
+    @user = User.find(params[:id])
+    @orders = @user.orders.page(params[:page]).reverse_order
+    @order = Order.find_by(params[:id])
   end
 
 
