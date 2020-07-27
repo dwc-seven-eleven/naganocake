@@ -1,13 +1,13 @@
 class ShippingAddressesController < ApplicationController
   def index
     @shipping_address = ShippingAddress.new
-    @shipping_addresses = ShippingAddress.all
+    @shipping_addresses = current_user.shipping_addresses
   end
 
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
     @shipping_address.user_id = current_user.id
-    @shipping_address.save!
+    @shipping_address.save
     redirect_to shipping_addresses_path
   end
 
