@@ -25,12 +25,19 @@ def index
         @order.update(order_params)
         redirect_to admin_orders_path
       end
-  elsif params[:select_id] == "2"
-     @order_product = OrderProduct.find_by(product_id:params[:product_id])
-     @order_product.update(order_product_params)
-     redirect_to admin_orders_path
+    elsif params[:select_id] == "2"
+      @order = Order.find(params[:order_id]) 
+      @order_product = @order.order_products.find_by(product_id:params[:product_id])
+      @order_product.update(order_product_params)
+      if @order.order_products.count == @order.order_products.where(production_status: "製作完了").count
+        @order.update(status: "発送準備中")
+      elsif @order.order_products.where(production_status: "製作中").count > 0
+        @order.update(status: "製作中")
+      end
+        redirect_to admin_orders_path
+    end
   end
-end
+
 
 # 該当顧客の注文一覧/
 
