@@ -12,18 +12,27 @@ def index
   end
 
   def update
-       if params[:select_id] == "1"
+    if params[:select_id] == "1"
+      @order = Order.find(params[:order_id])
+      @order.update(order_params)
+      if	@order.status == "入金確認"         
+        @order.order_products.each do |order_product|     
+        order_product.update(production_status: "製作待ち")
+        end
+        redirect_to admin_orders_path
+      else
         @order = Order.find(params[:order_id])
         @order.update(order_params)
         redirect_to admin_orders_path
-     elsif params[:select_id] == "2"
-        @order_product = OrderProduct.find_by(product_id:params[:product_id])
-        @order_product.update(order_product_params)
-        redirect_to admin_orders_path
+      end
+  elsif params[:select_id] == "2"
+     @order_product = OrderProduct.find_by(product_id:params[:product_id])
+     @order_product.update(order_product_params)
+     redirect_to admin_orders_path
   end
 end
 
-# 該当顧客の注文一覧
+# 該当顧客の注文一覧/
 
   def detail
     @user = User.find(params[:id])
