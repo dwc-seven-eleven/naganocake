@@ -2,8 +2,12 @@
 <p>注文情報</p>
 <div class= "table">
   <tr>
-    <td>注文日</td>
-    <td><%= @order.shipping_name %></td>
+    <td>購入者</td>
+     <td> <%= link_to(admin_user_path(@user), class: "name")  do %>
+          <div class= "name">
+          <%= "#{@user.family_name}#{@user.first_name}" %></div>
+          <% end %>
+    </td>
   </tr>
   <tr>
     <td>配送先</td>
@@ -34,7 +38,7 @@
 <div class= "table">
   <tr>
     <td>商品合計</td>
-    <td><%= @order.total_price %></td>
+    <td><%= @order.total_price-800 %></td>
   </tr>
   <tr>
     <td>配送料</td>
@@ -42,7 +46,7 @@
   </tr>
   <tr>
     <td>ご請求額</td>
-    <td>(<%= @order.total_price.to_i + @order.postage.to_i %>)</td>
+    <td>(<%= @order.total_price %>)</td>
   </tr>
 </div>
 

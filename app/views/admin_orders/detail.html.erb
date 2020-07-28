@@ -12,7 +12,7 @@
       <% @orders.each do |order| %>
       <tr>
         <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(@order) %></td>
-        <td><%= order.shipping_name %></td>
+         <td><%= "#{order.user.family_name}#{order.user.first_name}" %></td>
         <td><%= order.order_products.all.sum(:production_item) %></td>
         <td><%= order.status %></td>
       </tr>

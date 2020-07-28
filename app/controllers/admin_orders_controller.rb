@@ -8,6 +8,7 @@ def index
   def show
     @order = Order.find(params[:id])
     @order_products = OrderProduct.where(order_id:@order.id)
+    @user = @order.user
   end
 
   def update
