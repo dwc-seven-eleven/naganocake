@@ -19,11 +19,11 @@ def index
         @order.order_products.each do |order_product|     
         order_product.update(production_status: "製作待ち")
         end
-        redirect_to admin_orders_path
+        redirect_to request.referer
       else
         @order = Order.find(params[:order_id])
         @order.update(order_params)
-        redirect_to admin_orders_path
+        redirect_to request.referer
       end
     elsif params[:select_id] == "2"
       @order = Order.find(params[:order_id]) 
@@ -34,7 +34,7 @@ def index
       elsif @order.order_products.where(production_status: "製作中").count > 0
         @order.update(status: "製作中")
       end
-        redirect_to admin_orders_path
+        redirect_to request.referer
     end
   end
 

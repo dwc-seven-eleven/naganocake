@@ -24,9 +24,6 @@
 				<td><%= genre.name %></td>
 				<td><%= genre.status %></td>
 				<td><%= link_to "編集する",  edit_admin_genre_path(genre.id), class: "btn btn-primary" %></td>
-			<!-- 仮置き・後で消す-->
-			<td><%= link_to "Destroy(仮置き)",  admin_genre_path(genre.id), method: :delete, class: "btn-sm btn-danger" %></td>
-			<!-- /仮置き・後で消す-->
 			</tr>
 			<% end %>
 		</tbody>

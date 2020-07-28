@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     @genres =Genre.all
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @products = @genre.product.page(params[:page]).reverse_order
+      @products = @genre.product.page(params[:page]).reverse_order    
     else
       @products = Product.page(params[:page]).reverse_order
     end
