@@ -2,33 +2,35 @@
 
 <h1>会員一覧</h1>
 <div class="container">
-    <div class="panel panel-default">
+ <table class="table">
       <thead>
-   	  <tr>
-   	 	<th>会員ID</th>
-   	 	<th>氏名</th>
-   	 	<th>メールアドレス</th>
-   	 	<th>ステータス</th>
-   	  </tr>
-   	</thead>
-   </div>
+        <tr class= "active">
+         <th>会員ID</th>
+         <th>氏名</th>
+         <th>メールアドレス</th>
+         <th>ステータス</th>
+        </tr>
+      </thead>
 
-   <div class="panel-body">
-      <% @users.each do |user| %>
-      <tbody>
-   	  <tr>
-   		 <td><%= user.id %></td>
-   		 <td><%= link_to(admin_user_path(user), class: "name")  do %>
+
+   <% @users.each do |user| %>
+   <tbody>
+      <tr>
+         <td><%= user.id %></td>
+         <td><%= link_to(admin_user_path(user), class: "name")  do %>
             <div class= "name">
-   			   <%= "#{user.family_name}#{user.first_name}" %></div>
-   		   <% end %>
-          </td>
-          <td><%= user.email %></td>
-          <td><%= user.user_status %></td>
+            <%= "#{user.family_name}#{user.first_name}" %></div>
+         <% end %>
+         </td>
+         <td><%= user.email %></td>
+         <td><%= user.user_status %></td>
 
-	   <% end %>
-	     </tr>
+   <% end %>
 
-	   </tbody>
-   </div>
+   </tr>
+
+   </tbody>
+   
+</table>
+<%= paginate @users %>
 </div>

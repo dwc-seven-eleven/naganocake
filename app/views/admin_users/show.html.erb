@@ -1,23 +1,67 @@
+<div class="container">
 
-<h1><%= @user.family_name %><%= @user.first_name %>　さんの会員詳細</h1>
+	<div class="row">
+		<div class="col-md-3">
+			<h1><%= @user.family_name %><%= @user.first_name %>　
+			さん</h1>
+			<h3>の会員詳細</h3>
+		</div>
 
-顧客ID
-<%= @user.id %>
-<%= @user.user_status %><br />
-氏名
-<%= @user.family_name %> <%= @user.first_name %><br />
-フリガナ
-<%= @user.family_name_kana %><%= @user.first_name_kana %><br />
-郵便番号
-<%= @user.postcode %><br />
-住所
-<%= @user.address %><br />
-電話番号
-<%= @user.phone_number %><br />
-メールアドレス
-<%= @user.email %><br />
-<br />
+		<div class="col-md-6">
+			<table class="table table-bordered">
+  				<tr>
+    			<td class="active">顧客ID</td>
+    			<td><%= @user.id %>
+				<%= @user.user_status %></td>
+  				</tr>
 
-<%= link_to "編集する", edit_admin_user_path(@user.id) %>
+  				<tr>
+    			<td class="active">氏名</td>
+    			<td><%= @user.family_name %><%= @user.first_name %></td>
+  				</tr>
 
-<%= link_to "注文履歴一覧を見る", detail_admin_order_path(@user.id) %>
+  				<tr>
+    			<td class="active">カナ</td>
+    			<td><%= @user.family_name_kana %><%= @user.first_name_kana %></td>
+  				</tr>
+
+  				<tr>
+    			<td class="active">郵便番号</td>
+    			<td><%= @user.postcode %></td>
+  				</tr>
+  				
+  				<tr>
+    			<td class="active">住所</td>
+    			<td><%= @user.address %></td>
+  				</tr>
+
+  				<tr>
+    			<td class="active">電話番号</td>
+    			<td><%= @user.phone_number %></td>
+  				</tr>
+  	
+  				<tr>
+    			<td class="active">メールアドレス</td>
+    			<td><%= @user.email %></td>
+  				</tr>
+			</table>
+
+			<table>
+  				<tr>
+    			<td><h3>配送先</h3></td>
+    			<td><%= link_to "編集する", edit_admin_user_path(@user.id),class: "btn-sm btn-success" %></td>
+    			<td></td>
+  				</tr>
+  			
+  				<tr>
+    			<td><h3>注文履歴</h3></td>
+    			<td><%= link_to "注文履歴一覧を見る", detail_admin_order_path(@user.id),class: "btn-sm btn-success" %></td>
+    			<td></td>
+  				</tr>
+			</table>
+		</div>
+		
+		<div class="col-md-3">
+		</div>
+	</div>
+</div>
