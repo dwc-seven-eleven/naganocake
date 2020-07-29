@@ -1,8 +1,12 @@
 <div class="container">
 	
 	<div class="row">
+
+		<div class="text-center">
 		
-		<h4>本当に退会しますか？</h4>
+			<h4>本当に退会しますか？</h4>
+
+		</div>
 
 	</div>
 
@@ -19,10 +23,13 @@
 	</div>
 
 	<div class="row">
+
+		<div class="center-block">
 		
-		<%= link_to "退会しない", orders_path(@user), class: "btn btn-prymary pull-right" %>
+			<%= link_to "退会しない", orders_path(@user), class: "btn btn-primary pull-right" %>
 
-		<%= link_to "退会する", withdrawl_user_path(@user.id), method: :patch, class: "btn btn-danger pull-right" %>
+			<%= link_to "退会する", withdrawl_user_path(@user.id), method: :patch, class: "btn btn-danger pull-right" %>
 
+		</div>
 	</div>
 </div>
