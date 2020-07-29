@@ -1,32 +1,76 @@
 
-<h1><%= @user.family_name %><%= @user.first_name %>　さんの会員詳細</h1>
 
-会員ID
-<%= @user.id %>
-<!-- form_for部分 -->
-<%= form_for(@user, url: admin_user_path) do |f| %>
-  <h4>氏名</h4>
-  <%= f.text_field :family_name %>
-  <%= f.text_field :first_name %>
-  <h4>フリガナ</h4>
-  <%= f.text_field :family_name_kana %>
-  <%= f.text_field :first_name_kana %>
-  <h4>郵便番号</h4>
-  <%= f.text_area :postcode %>
-　<h4>住所</h4>
-  <%= f.text_area :address %>
-  <h4>電話番号</h4>
-  <%= f.text_area :phone_number %>
-  <h4>メールアドレス</h4>
-  <%= f.text_area :email %>
-<h4>ステータス</h4>
-<%= f.radio_button :user_status, :有効, checked: "checked" %>
-    <%= f.label :member, "有効" %>
-    <%= f.radio_button :user_status, :退会済 %>
-    <%= f.label :unmember,"退会済み" %>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3">
+
+      <h3><%= @user.family_name %><%= @user.first_name %>　</h3>
+      <h3>さんの会員詳細</h3></div>
+        <div class="col-md-6">
+         <%= form_for(@user, url: admin_user_path) do |f| %>
+          <table class="table table-bordered">
+            <tr>
+            <td class="active">顧客ID</td>
+            <td><%= @user.id %></td>
+
+            
+
+              <tr>
+              <td class="active">氏名</td>
+              <td> <%= f.text_field :family_name %>
+              <%= f.text_field :first_name %></td>
+              </tr>
+
+
+              <tr>
+              <td class="active">カナ</td>
+              <td>  <%= f.text_field :family_name_kana %>
+              <%= f.text_field :first_name_kana %></td>
+              </tr>
+
+              <tr>
+              <td class="active">カナ</td>
+              <td>  <%= f.text_field :family_name_kana %>
+              <%= f.text_field :first_name_kana %></td>
+              </tr>
+
+              <tr>
+              <td class="active">郵便番号</td>
+              <td>   <%= f.text_area :postcode %></td>
+              </tr>
+
+              <tr>
+              <td class="active">住所</td>
+              <td>  <%= f.text_area :address %></td>
+              </tr>
+
+
+              <tr>
+              <td class="active">電話番号</td>
+              <td>  <%= f.text_area :phone_number %></td>
+              </tr>
+
+              <tr>
+              <td class="active">メールアドレス</td>
+              <td>  <%= f.text_area :email %></td>
+              </tr>
+
+              <tr>
+              <td class="active">ステータス</td>
+              <td><%= f.radio_button :user_status, :有効, checked: "checked" %>
+              <%= f.label :member, "有効" %>
+              <%= f.radio_button :user_status, :退会済 %>
+              <%= f.label :unmember,"退会済み" %>
+              </td>
+              </tr>
+            </table>
+            <center>
+              <%= f.submit '変更を保存する', class: "btn btn-primary" %>
+            </center>
+            <% end %>
+
+        </div>
+    </div>
   </div>
-
-  <%= f.submit '変更を保存する', class: "btn btn-primary" %>
-
-<% end %>
-
+</div>
