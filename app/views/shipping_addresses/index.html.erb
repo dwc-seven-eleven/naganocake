@@ -1,17 +1,25 @@
-<h1>配送先登録 / 一覧</h1>
+<div class="container">
+<h3>配送先登録 / 一覧</h3>
 
-<!--配送先登録-->
+	<div class="row">
+	<div class="col-lg-7">
 	<%= form_for(@shipping_address, url: shipping_addresses_path) do |shipping_address| %>
 	<%= shipping_address.label "郵便番号(ハイフンなし)" %>
 	<%= shipping_address.text_field :shipping_postcode, class: "form-control" %><br>
 	<%= shipping_address.label "住所" %>
 	<%= shipping_address.text_area :shipping_address, class: "form-control" %><br>
 	<%= shipping_address.label "宛名" %>
-	<%= shipping_address.text_field :shipping_name, class: "form-control" %><br>
+	<%= shipping_address.text_field :shipping_name, class: "form-control" %>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-lg-5">
 		<%= shipping_address.submit "登録する", class: "btn btn-success" %>
+	</div>
+	</div>
 	<% end %>
-<!--/配送先登録-->
-<!--配送先一覧-->
+	<div class="row">
+	<div class="col-lg-7">
 	<table class="table table-bordered">
 		<thead>
 			<tr class="active">
@@ -27,10 +35,11 @@
 				<td><%= shipping_address.shipping_postcode %></td>
 				<td><%= shipping_address.shipping_name %></td>
 				<td><%= shipping_address.shipping_address %></td>
-				<td><%= link_to "編集する",  edit_shipping_address_path(shipping_address.id), class: "btn btn-primary" %>
-					<%= link_to "削除する",  shipping_address_path(shipping_address.id), method: :delete, class: "btn-sm btn-danger" %></td>
+				<td><%= link_to "編集する",  edit_shipping_address_path(shipping_address.id), class: "btn btn-primary" %><%= link_to "削除する",  shipping_address_path(shipping_address.id), method: :delete, class: "btn-sm btn-danger" %></td>
 			</tr>
 			<% end %>
 		</tbody>
 	</table>
-<!--/配送先一覧-->
+	</div>
+	</div>
+</div>
