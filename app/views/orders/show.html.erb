@@ -25,12 +25,12 @@
 </table>
 </div>
 
-<div class="col-md-4">
+<div class="col-md-3">
 <p>請求情報</p>
 <table class="table table-bordered">
   <tr>
     <td class="active">商品合計</td>
-    <td><%= @order.total_price-800 %>円</td>
+    <td><%= @order.total_price %>円</td>
   </tr>
   <tr>
     <td class="active">配送料</td>
@@ -38,7 +38,7 @@
   </tr>
   <tr>
     <td class="active">ご請求額</td>
-    <td><%= @order.total_price %>円</td>
+    <td><%= @order.total_price.to_i + @order.postage.to_i %>円</td>
   </tr>
 </table>
 </div>
@@ -62,8 +62,10 @@
       <td><%= order.product.product_name %></td>
       <td><%= order.product.unit_price %></td>
       <td><%= order.production_item %></td>
-<td><%= sum_product = order.product.unit_price.to_i * order.production_item %>
+
+      <td><%= sum_product = order.product.unit_price.to_i * order.production_item %>
              <% sum_all += sum_product %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
