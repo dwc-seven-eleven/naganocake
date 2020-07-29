@@ -2,8 +2,8 @@
 <div class="col-md-3">
 <%= render 'admin_genres/genre', genre: @genres %>
 </div>
-<h2>商品一覧 （全<%= @products.total_count %>件）</h2>
 <div class="col-xs-9">
+<h1>商品一覧 （全<%= @products.total_count %>件）</h1>
 <% @products.each do |product| %>
   <% if product.genre.status == "有効" %>
   <div class="list">
