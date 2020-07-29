@@ -1,8 +1,11 @@
-<h1>ショッピングカート</h1>
-<!--カートを空にする-->
+<div class="container">
+<div class="row">
+<h3>ショッピングカート</h3>
+<div class="text-right">
 <%= link_to 'カートを空にする', destroy_all_carts_path, method: :delete, class: 'btn btn-danger' %>
-<!--/カートを空にする-->
-<!--カートの中身-->
+</div>
+</div>
+<div class="row">
   <table class="table table-bordered">
     <thead>
       <tr class="active">
@@ -14,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <% sum_all = 0 %> <!--合計金額の初期設定-->
+      <% sum_all = 0 %>
       <% @carts.each do |cart| %>
       <tr>
         <td><%= attachment_image_tag cart.product, :product_image, :fill, 300, 300, format: 'jpeg' %><%= cart.product.product_name %></td>
@@ -30,17 +33,22 @@
       <% end %>
     </tbody>
   </table>
-<!--/カートの中身-->
-<!--合計金額-->
+</div>
+<div class="row">
+   <div class="col-lg-9">
+  <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %><br>
+</div>
+  <div class="col-lg-3">
   <table class="table table-bordered">
-    <tr>  
-      <th>合計金額</th><td><%= sum_all %>円</td>
+    <tr>
+      <th class="active">合計金額</th><td width="150"><%= sum_all %></td>
     </tr>
   </table>
-<!--/合計金額-->
-<!--買い物を続ける-->
-  <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %><br>
-<!--/買い物を続ける-->
-<!--情報入力に進む-->
-  <%= link_to "情報入力に進む", orders_new_path, class: "btn btn-success" %>
-<!--/情報入力に進む-->
+</div>
+</div>
+<div class="row">
+  <center>
+  <%= link_to "情報入力に進む", orders_new_path, class: "btn btn-success btn-lg" %>
+  </center>
+</div>
+</div>

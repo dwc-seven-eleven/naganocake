@@ -15,12 +15,13 @@
  */
  @import "bootstrap-sprockets"; 
  @import "bootstrap";      
+
+ * { font-family: "M PLUS Rounded 1c"; }
  .navbar {
   background-color: #ffee6a77;
   font-size: 25px;
   color: chocolate;
   height: 100px;
-  font-family: 'Cherry Swash', cursive;
 	}
 
 .body {
@@ -31,4 +32,9 @@
 .btn {
 	text-align: center;
 	background-color: #black;
+
+.navbar-header{
+
+line-height: normal;
+
 }

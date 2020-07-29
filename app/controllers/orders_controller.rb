@@ -1,19 +1,23 @@
 class OrdersController < ApplicationController
-
   before_action :authenticate_user!
-
+  
   def new
     @order = Order.new
     @user = current_user
     @shipping_address = ShippingAddress.where(user_id: @user.id)
   end
-
+  
   def create
     @order = Order.new(order_params)
-    @shipping_address = ShippingAddress.new(params[:shipping_address])
+    @shipping_address = ShippingAddress.new()
+    @shipping_address.shipping_address = params[:order][:shipping_adress]
+    @shipping_address.shipping_postcode = params[:order][:shipping_postcode]
+    @shipping_address.shipping_name = params[:order][:shipping_name]
+    @shipping_address.user_id = params[:order][:user_id]
     @order.postage = 800
     @order.status = 0
     @order.save
+    @shipping_address.save
 
     @cart_items = current_user.carts
     @cart_items.each do |cart_item|
@@ -65,6 +69,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:pay, :shipping_postcode, :shipping_adress, :shipping_name, :user_id, :total_price)
   end
+
 
 
 end

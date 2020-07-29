@@ -30,12 +30,14 @@ class AdminProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @genre = @product.genre
   end
 
   def update
     @product = Product.find(params[:id])
+    @product.genre_id = params[:genre]
     if @product.update(product_params)
-       redirect_to admin_product_path(@product.id)
+      redirect_to request.referer
     else
        render 'edit'
     end

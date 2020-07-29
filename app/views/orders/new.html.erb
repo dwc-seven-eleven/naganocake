@@ -7,17 +7,14 @@
 
 			<div class="row">
 
-				<div class="col-">
-
 					<h3>注文情報入力</h3>
 
 					<h4>支払方法</h4>
 
 					<%= form_with model: @order, local: true, method: :post, url: orders_confirm_path do |f| %>
 
-						<!--ラジオボタン クレジット-->
 						<%= radio_button_tag("pay", "クレジット", checked: true)  %>
-						<%= label_tag("pay_credit", "クレジットカード") %>
+						<%= label_tag("pay_credit", "クレジットカード") %><br />
 
 						<%= radio_button_tag("pay", "銀行振込") %>
 						<%= label_tag("pay_bank", "銀行振込") %>
@@ -27,38 +24,43 @@
 					<h4>お届け先</h4>
 
 						<%= radio_button_tag("full", "myaddress", checked: true)  %>
-						<%= label_tag("full_myaddress", "ご自身の住所") %>
-							<%= "#{@user.postcode} #{@user.address}"  %>
+						<%= label_tag("full_myaddress", "ご自身の住所") %><br />
+							<%= "#{@user.postcode} #{@user.address}"  %><br />
 
-							<%= "#{@user.family_name + @user.first_name}" %>
+							<%= "#{@user.family_name + @user.first_name}" %><br />
 
 						<%= radio_button_tag("full", "listaddress")  %>
-						<%= label_tag("full_listaddress", "登録済住所から選択") %>
+						<%= label_tag("full_listaddress", "登録済住所から選択") %><br />
 
 
-						<%= f.collection_select :listaddress, @shipping_address, :id,:fulladdress, prompt: "選択してください" %>
+						<%= f.collection_select :listaddress, @shipping_address, :id,:fulladdress, prompt: "選択してください" %><br />
 
 
 						<%= radio_button_tag("full", "newaddress") %>
-						<%= label_tag("full_newaddress", "新しいお届け先") %>
+						<%= label_tag("full_newaddress", "新しいお届け先") %><br />
 
-							郵便番号(ハイフンなし)
-							<%= f.text_field :shipping_postcode %>
+							<table class="table-borderless">
 
+							<tr>
+								<th>郵便番号(ハイフンなし)</th>
+								<th><%= f.text_field :shipping_postcode %></th>
+							</tr>
 
-							住所
-							<%= f.text_field :shipping_adress %>
+							<tr>
+								<th>住所
+								<th><%= f.text_field :shipping_adress %></th>
+							</tr>
 
-							宛名
-							<%= f.text_field :shipping_name %>
+							<tr>
+								<th>宛名
+								<th><%= f.text_field :shipping_name %></th>
+							</tr>
 
-						<%= f.submit '確認画面へ進む' %>
+							</table>
 
+						<%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
 
 					<% end %>
-
-
-				</div>
 
 			</div>
 
