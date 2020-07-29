@@ -1,6 +1,6 @@
-<h1>ジャンル一覧・追加</h1>
-
-<!--ジャンル追加-->
+<div class="container">
+<h3>ジャンル一覧・追加</h3>
+<div class="row">
 	<%= form_for(@genre, url: admin_genres_path) do |genre| %>
 	<%= genre.label "ジャンル" %>
 	<%= genre.text_field :name %>
@@ -8,8 +8,9 @@
 	<%= genre.radio_button :status, :無効 %>無効
 	<%= genre.submit "追加", class: "btn btn-primary" %>
 	<% end %>
-<!--/ジャンル追加-->
-<!--ジャンル一覧-->
+</div>
+<div class="row">
+<div class="col-lg-5">
 	<table class="table">
 		<thead>
 			<tr class="active">
@@ -28,4 +29,6 @@
 			<% end %>
 		</tbody>
 	</table>
-<!--/ジャンル一覧-->
+</div>
+</div>
+</div>

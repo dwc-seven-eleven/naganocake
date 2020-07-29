@@ -15,8 +15,8 @@ def index
     if params[:select_id] == "1"
       @order = Order.find(params[:order_id])
       @order.update(order_params)
-      if	@order.status == "入金確認"         
-        @order.order_products.each do |order_product|     
+      if	@order.status == "入金確認"
+        @order.order_products.each do |order_product|
         order_product.update(production_status: "製作待ち")
         end
         redirect_to request.referer
@@ -26,7 +26,7 @@ def index
         redirect_to request.referer
       end
     elsif params[:select_id] == "2"
-      @order = Order.find(params[:order_id]) 
+      @order = Order.find(params[:order_id])
       @order_product = @order.order_products.find_by(product_id:params[:product_id])
       @order_product.update(order_product_params)
       if @order.order_products.count == @order.order_products.where(production_status: "製作完了").count
