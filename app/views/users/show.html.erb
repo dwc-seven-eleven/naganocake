@@ -1,47 +1,53 @@
-<h1>マイページ</h1>
 <div class="row">
-<div class="col-md-5">
+<div class="col-md-3">
+<h1>マイページ</h1>
+  </div>
+  <div class="col-md-6">
 
-<h2>登録情報</h2>
-<p><%= link_to "編集する", edit_user_path(@user),class: "btn-sm btn-success" %>     <%= link_to "パスワードを変更する", new_user_password_path(@user),class: "btn-sm btn-success" %></p>
+    <h2>登録情報</h2>
+    <div class ="buttons"><%= link_to "編集する", edit_user_path(@user),class: "btn-sm btn-success" %>     <%= link_to "パスワードを変更する", new_user_password_path(@user),class: "btn-sm btn-success" %>
+    </div>
 
-<table class="table table-bordered">
-  <tr>
-    <td class="active">氏名</td>
-    <td><%= @user.family_name %><%= @user.first_name %></td>
-  </tr>
-  <tr>
-    <td class="active">カナ</td>
-    <td><%= @user.family_name_kana %><%= @user.first_name_kana %></td>
-  </tr>
-  <tr>
-    <td class="active">郵便番号</td>
-    <td><%= @user.postcode %></td>
-  </tr>
-  <tr>
-    <td class="active">住所</td>
-    <td><%= @user.address %></td>
-  </tr>
-  <tr>
-    <td class="active">電話番号</td>
-    <td><%= @user.phone_number %></td>
-  </tr>
-  <tr>
-    <td class="active">メールアドレス</td>
-    <td><%= @user.email %></td>
-  </tr>
-</table>
+      <table class="table table-bordered">
+        <tr>
+          <td class="active">氏名</td>
+          <td><%= @user.family_name %><%= @user.first_name %></td>
+        </tr>
+        <tr>
+          <td class="active">カナ</td>
+          <td><%= @user.family_name_kana %><%= @user.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class="active">郵便番号</td>
+          <td><%= @user.postcode %></td>
+        </tr>
+        <tr>
+          <td class="active">住所</td>
+          <td><%= @user.address %></td>
+        </tr>
+        <tr>
+          <td class="active">電話番号</td>
+          <td><%= @user.phone_number %></td>
+        </tr>
+        <tr>
+          <td class="active">メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td><h3>配送先</h3></td>
+          <td><%= link_to "一覧を見る", shipping_addresses_path,class: "btn-sm btn-success" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><h3 class="order">注文履歴</h3></td>
+          <td><%= link_to "一覧を見る", orders_path,class: "btn-sm btn-success" %></td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="col-md-3">
+  </div>
 </div>
-</div>
-<table>
-  <tr>
-    <td><h3>配送先</h3></td>
-    <td><%= link_to "一覧を見る", shipping_addresses_path,class: "btn-sm btn-success" %></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><h3>注文履歴</h3></td>
-    <td><%= link_to "一覧を見る", orders_path,class: "btn-sm btn-success" %></td>
-    <td></td>
-  </tr>
-</table>
