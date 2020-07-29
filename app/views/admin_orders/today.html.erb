@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<div class="container">
 <h1>本日の注文履歴一覧</h1>
 <div class="center-block">
 
 	<table class="table table-bordered">
    		<thead>
-   	 		<tr>
+   	 		<tr class="active">
                <th>購入日時</th>
    	 			<th>購入者</th>
    	 			<th>個数</th>
@@ -29,5 +30,6 @@
               <% end %>
 			   </tbody>
 	</table>
+</div>
 </div>
 <%= paginate @orders %>
