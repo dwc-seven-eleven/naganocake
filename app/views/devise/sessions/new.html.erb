@@ -3,16 +3,15 @@
   <div class="row">
     <h4>会員の方はこちらからログイン</h4>
   </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <table class="table-borderless">
-
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <tr><th><%= f.label :"メールアドレス" %></th>
           <td><%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %></th></td>
           <tr><th><%= f.label :"パスワード" %></th>
           <td><%= f.password_field :password, autocomplete: "パスワード" %></th></td>
-</table>
+  </table>
 
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
             <%= link_to "=>パスワード忘れた方はこちら", new_password_path(resource_name) %><br />
           <% end %>
 
