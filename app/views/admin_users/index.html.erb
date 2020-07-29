@@ -2,34 +2,34 @@
 
 <h1>会員一覧</h1>
 <div class="container">
- <table class="table table-striped">
+ <table class="table">
       <thead>
-   	  <tr>
-   	 	<th>会員ID</th>
-   	 	<th>氏名</th>
-   	 	<th>メールアドレス</th>
-   	 	<th>ステータス</th>
-   	  </tr>
-   	</thead>
+        <tr class= "active">
+         <th>会員ID</th>
+         <th>氏名</th>
+         <th>メールアドレス</th>
+         <th>ステータス</th>
+        </tr>
+      </thead>
 
 
    <% @users.each do |user| %>
    <tbody>
-   	<tr>
-   		<td><%= user.id %></td>
-   		<td><%= link_to(admin_user_path(user), class: "name")  do %>
-   			<div class= "name">
-   			<%= "#{user.family_name}#{user.first_name}" %></div>
-   		<% end %>
+      <tr>
+         <td><%= user.id %></td>
+         <td><%= link_to(admin_user_path(user), class: "name")  do %>
+            <div class= "name">
+            <%= "#{user.family_name}#{user.first_name}" %></div>
+         <% end %>
          </td>
          <td><%= user.email %></td>
          <td><%= user.user_status %></td>
 
 	<% end %>
 
-	</tr>
+   </tr>
 
-	</tbody>
+   </tbody>
    
 </table>
 <%= paginate @users %>
