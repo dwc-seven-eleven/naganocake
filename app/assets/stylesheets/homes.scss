@@ -19,14 +19,21 @@
   margin-right: 10px;/*はみ出ないように調整*/
   margin-bottom: 20px;
   padding: 10px;
-  width: 2000px;
+  width: 200px;
   height: 250px;
   float: left;
   text-align: center;
 }
 
 .main-visual {
-  width: 70%;
-  height: 300px;
-  background-image: url(app/assets/images/main_image.jpg);
+  width: 80%;
+  height: 380px;
+  background-image: url("/main_image.jpg");
+}
+
+.main-text {
+  font-size:17px;
+  padding: 135px;
+  color: white;
+  font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
 }
